@@ -1,20 +1,25 @@
 import React, { Component } from "react";
+import BuildControls from "../../components/BuildControls";
 import Burger from "../../components/Burger";
 
 class BurgerBuilder extends Component {
   state = {
     ingredients: {
-      salad: 1,
-      cheese: 2,
-      bacon: 2,
-      meat: 1,
+      salad: 0,
+      cheese: 0,
+      bacon: 0,
+      meat: 0,
     },
+  };
+
+  ortsNemeh = (type) => {
+    console.log("=====> " + type);
   };
   render() {
     return (
       <div>
         <Burger orts={this.state.ingredients} />
-        <div>Орцны удирдлага</div>
+        <BuildControls ortsNemeh={this.ortsNemeh} />
       </div>
     );
   }
