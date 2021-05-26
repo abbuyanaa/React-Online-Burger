@@ -23,6 +23,15 @@ class BurgerPage extends Component {
 
     totalPrice: 1000,
     purchasing: false,
+    confirmOrder: false,
+  };
+
+  showConfirmModal = () => {
+    this.setState({ confirmOrder: true });
+  };
+
+  closeConfirmModal = () => {
+    this.setState({ confirmOrder: false });
   };
 
   ortsNemeh = (type) => {
@@ -61,7 +70,10 @@ class BurgerPage extends Component {
     }
     return (
       <div>
-        <Modal>
+        <Modal
+          closeConfirmModal={this.closeConfirmModal}
+          show={this.state.confirmOrder}
+        >
           <OrderSummary
             ingredientsNames={INGREDIENT_NAMES}
             ingredients={this.state.ingredients}
@@ -69,6 +81,7 @@ class BurgerPage extends Component {
         </Modal>
         <Burger orts={this.state.ingredients} />
         <BuildControls
+          showConfirmModal={this.showConfirmModal}
           ingredientsNames={INGREDIENT_NAMES}
           disabled={!this.state.purchasing}
           price={this.state.totalPrice}
