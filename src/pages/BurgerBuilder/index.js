@@ -13,8 +13,6 @@ class BurgerBuilder extends Component {
   };
 
   ortsNemeh = (type) => {
-    console.log("=====> " + type);
-
     const newIngredients = { ...this.state.ingredients };
     newIngredients[type]++;
 
@@ -22,8 +20,6 @@ class BurgerBuilder extends Component {
   };
 
   ortsHasah = (type) => {
-    console.log("=====> " + type);
-
     if (this.state.ingredients[1] !== 0) {
       const newIngredients = { ...this.state.ingredients };
       newIngredients[type]--;
@@ -33,10 +29,19 @@ class BurgerBuilder extends Component {
   };
 
   render() {
+    const disabledIngredients = { ...this.state.ingredients };
+
+    for (let key in disabledIngredients) {
+      disabledIngredients[key] = disabledIngredients[key] <= 0;
+    }
     return (
       <div>
         <Burger orts={this.state.ingredients} />
-        <BuildControls ortsNemeh={this.ortsNemeh} ortsHasah={this.ortsHasah} />
+        <BuildControls
+          disabledIngredients={disabledIngredients}
+          ortsNemeh={this.ortsNemeh}
+          ortsHasah={this.ortsHasah}
+        />
       </div>
     );
   }
