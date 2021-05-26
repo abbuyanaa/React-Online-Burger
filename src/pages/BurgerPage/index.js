@@ -26,6 +26,10 @@ class BurgerPage extends Component {
     confirmOrder: false,
   };
 
+  continueOrder = () => {
+    console.log("Continue Order");
+  };
+
   showConfirmModal = () => {
     this.setState({ confirmOrder: true });
   };
@@ -75,6 +79,8 @@ class BurgerPage extends Component {
           show={this.state.confirmOrder}
         >
           <OrderSummary
+            onCancel={this.closeConfirmModal}
+            onContinue={this.continueOrder}
             price={this.state.totalPrice}
             ingredientsNames={INGREDIENT_NAMES}
             ingredients={this.state.ingredients}
