@@ -7,7 +7,9 @@ const BuildControl = (props) => (
     <button onClick={() => props.ortsNemeh(props.type)} className={styles.More}>
       Нэмэх
     </button>
-    <button className={styles.Less}>Хасах</button>
+    <button onClick={() => props.ortsHasah(props.type)} className={styles.Less}>
+      Хасах
+    </button>
   </div>
 );
 
