@@ -6,10 +6,14 @@ import Shadow from "../General/Shadow";
 
 const SideBar = (props) => {
   let classes = [styles.SideBar, styles.Close];
+
+  if (props.showSidebar) {
+    classes = [styles.SideBar, styles.Open];
+  }
   return (
     <div>
-      <Shadow show={props.showSidebar} />
-      <div className={classes.join(" ")}>
+      <Shadow show={props.showSidebar} darahad={props.toggleSideBar} />
+      <div onClick={props.toggleSideBar} className={classes.join(" ")}>
         <div className={styles.Logo}>
           <Logo />
         </div>

@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 
 const Modal = (props) => (
   <div>
-    <Shadow show={props.show} closeConfirmModal={props.closeConfirmModal} />
+    <Shadow show={props.show} darahad={props.closeConfirmModal} />
     <div
       style={{
         transform: props.show ? "translateY(0)" : "translateY(-100vh)",
