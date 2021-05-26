@@ -13,7 +13,8 @@ class BurgerPage extends Component {
       meat: 0,
     },
 
-    totalPrice: 0,
+    totalPrice: 1000,
+    purchasing: false,
   };
 
   ortsNemeh = (type) => {
@@ -22,7 +23,11 @@ class BurgerPage extends Component {
 
     const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type];
 
-    this.setState({ totalPrice: newPrice, ingredients: newIngredients });
+    this.setState({
+      purchasing: true,
+      totalPrice: newPrice,
+      ingredients: newIngredients,
+    });
   };
 
   ortsHasah = (type) => {
@@ -32,7 +37,11 @@ class BurgerPage extends Component {
 
       const newPrice = this.state.totalPrice - INGREDIENT_PRICES[type];
 
-      this.setState({ totalPrice: newPrice, ingredients: newIngredients });
+      this.setState({
+        purchasing: newPrice > 1000,
+        totalPrice: newPrice,
+        ingredients: newIngredients,
+      });
     }
   };
 
@@ -46,6 +55,7 @@ class BurgerPage extends Component {
       <div>
         <Burger orts={this.state.ingredients} />
         <BuildControls
+          disabled={!this.state.purchasing}
           price={this.state.totalPrice}
           disabledIngredients={disabledIngredients}
           ortsNemeh={this.ortsNemeh}
