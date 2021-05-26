@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import BuildControls from "../../components/BuildControls";
 import Burger from "../../components/Burger";
+import BuildControls from "../../components/BuildControls";
+import Modal from "../../components/General/Modal";
 
 const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
 
@@ -53,6 +54,10 @@ class BurgerPage extends Component {
     }
     return (
       <div>
+        <Modal>
+          <h1>Та итгэлтэй байна уу...</h1>
+          <p>Захиалгын дэлгэрэнгүй</p>
+        </Modal>
         <Burger orts={this.state.ingredients} />
         <BuildControls
           disabled={!this.state.purchasing}
