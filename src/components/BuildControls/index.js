@@ -4,7 +4,9 @@ import styles from "./style.module.css";
 
 const BuildControls = (props) => (
   <div className={styles.BuildControls}>
-    <p>Бургерийн үнэ: {props.price}</p>
+    <p>
+      Бургерийн үнэ: <strong>{props.price}</strong>
+    </p>
     <BuildControl
       ortsNemeh={props.ortsNemeh}
       ortsHasah={props.ortsHasah}

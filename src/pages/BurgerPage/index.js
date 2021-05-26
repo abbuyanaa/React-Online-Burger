@@ -4,7 +4,7 @@ import Burger from "../../components/Burger";
 
 const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
 
-class BurgerBuilder extends Component {
+class BurgerPage extends Component {
   state = {
     ingredients: {
       salad: 0,
@@ -56,4 +56,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+export default BurgerPage;

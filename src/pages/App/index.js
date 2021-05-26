@@ -1,5 +1,5 @@
 import Toolbar from "../../components/Toolbar";
-import BurgerBuilder from "../BurgerBuilder";
+import BurgerPage from "../BurgerPage";
 import styles from "./style.module.css";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div>
       <Toolbar />
       <main className={styles.Content}>
-        <BurgerBuilder />
+        <BurgerPage />
       </main>
     </div>
   );
