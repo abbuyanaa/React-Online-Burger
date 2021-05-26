@@ -75,6 +75,7 @@ class BurgerPage extends Component {
           show={this.state.confirmOrder}
         >
           <OrderSummary
+            price={this.state.totalPrice}
             ingredientsNames={INGREDIENT_NAMES}
             ingredients={this.state.ingredients}
           />
