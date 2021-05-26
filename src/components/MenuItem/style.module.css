@@ -1,8 +1,7 @@
 .MenuItem {
   margin: 0;
   display: block;
-  height: 100%;
-  width: auto;
+  width: 100%;
   align-items: center;
 }
 
