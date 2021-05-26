@@ -8,7 +8,7 @@ const Toolbar = () => (
   <header className={styles.Toolbar}>
     <div>...</div>
     <Logo />
-    <nav>
+    <nav className={styles.HideOnMobile}>
       <Menu />
     </nav>
   </header>
