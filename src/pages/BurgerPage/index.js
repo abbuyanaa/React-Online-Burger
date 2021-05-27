@@ -30,30 +30,7 @@ class BurgerPage extends Component {
     loading: false,
   };
 
-  componentDidMount = () => {
-    this.setState({ loading: true });
-    axios
-      .get("/orders.json")
-      .then((response) => {
-        let arr = Object.entries(response.data);
-        arr = arr.reverse();
-        arr.forEach((el) => {
-          console.log(el[1].hayag.name + " ==> " + el[1].dun);
-        });
-
-        const lastOrder = arr[arr.length - 1][1];
-
-        this.setState({
-          lastCustomerName: lastOrder.hayag.name,
-          ingredients: lastOrder.orts,
-          totalPrice: lastOrder.dun,
-        });
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        this.setState({ loading: false });
-      });
-  };
+  componentDidMount = () => {};
 
   continueOrder = () => {
     const order = {
@@ -138,12 +115,6 @@ class BurgerPage extends Component {
             />
           )}
         </Modal>
-
-        {this.state.loading && <Spinner />}
-
-        <p style={{ width: "100%", textAlign: "center", fontSize: "28px" }}>
-          Сүүлчийн захиалагч : {this.state.lastCustomerName}
-        </p>
 
         <Burger orts={this.state.ingredients} />
 
