@@ -25,6 +25,25 @@ class BurgerPage extends Component {
     totalPrice: 1000,
     purchasing: false,
     confirmOrder: false,
+    lastCustomerName: "N/A",
+  };
+
+  componentDidMount = () => {
+    axios.get("/orders.json").then((response) => {
+      let arr = Object.entries(response.data);
+      arr = arr.reverse();
+      arr.forEach((el) => {
+        console.log(el[1].hayag.name + " ==> " + el[1].dun);
+      });
+
+      const lastOrder = arr[arr.length - 1][1];
+
+      this.setState({
+        lastCustomerName: lastOrder.hayag.name,
+        ingredients: lastOrder.orts,
+        totalPrice: lastOrder.dun,
+      });
+    });
   };
 
   continueOrder = () => {
@@ -105,6 +124,9 @@ class BurgerPage extends Component {
             ingredients={this.state.ingredients}
           />
         </Modal>
+        <p style={{ width: "100%", textAlign: "center", fontSize: "28px" }}>
+          Сүүлчийн захиалагч : {this.state.lastCustomerName}
+        </p>
         <Burger orts={this.state.ingredients} />
         <BuildControls
           showConfirmModal={this.showConfirmModal}
