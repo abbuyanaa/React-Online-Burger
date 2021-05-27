@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SideBar from "../../components/SideBar";
 import Toolbar from "../../components/Toolbar";
 import BurgerPage from "../BurgerPage";
+import OrderPage from "../OrderPage";
 import styles from "./style.module.css";
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
         />
         <main className={styles.Content}>
           <BurgerPage />
+          <OrderPage />
         </main>
       </div>
     );
