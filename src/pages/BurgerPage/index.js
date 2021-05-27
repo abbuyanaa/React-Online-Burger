@@ -4,6 +4,7 @@ import BuildControls from "../../components/BuildControls";
 import Modal from "../../components/General/Modal";
 import OrderSummary from "../../components/OrderSummary";
 import axios from "../../axios-orders";
+import Spinner from "../../components/General/Spinner";
 
 const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
 const INGREDIENT_NAMES = {
@@ -26,24 +27,32 @@ class BurgerPage extends Component {
     purchasing: false,
     confirmOrder: false,
     lastCustomerName: "N/A",
+    loading: false,
   };
 
   componentDidMount = () => {
-    axios.get("/orders.json").then((response) => {
-      let arr = Object.entries(response.data);
-      arr = arr.reverse();
-      arr.forEach((el) => {
-        console.log(el[1].hayag.name + " ==> " + el[1].dun);
-      });
+    this.setState({ loading: true });
+    axios
+      .get("/orders.json")
+      .then((response) => {
+        let arr = Object.entries(response.data);
+        arr = arr.reverse();
+        arr.forEach((el) => {
+          console.log(el[1].hayag.name + " ==> " + el[1].dun);
+        });
 
-      const lastOrder = arr[arr.length - 1][1];
+        const lastOrder = arr[arr.length - 1][1];
 
-      this.setState({
-        lastCustomerName: lastOrder.hayag.name,
-        ingredients: lastOrder.orts,
-        totalPrice: lastOrder.dun,
+        this.setState({
+          lastCustomerName: lastOrder.hayag.name,
+          ingredients: lastOrder.orts,
+          totalPrice: lastOrder.dun,
+        });
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        this.setState({ loading: false });
       });
-    });
   };
 
   continueOrder = () => {
@@ -57,15 +66,16 @@ class BurgerPage extends Component {
       },
     };
 
+    this.setState({ loading: true });
+
     axios
       .post("/orders.json", order)
       .then((response) => {
         alert("Amjilttai hadgaladglaa");
       })
-      .catch((err) => {
-        console.log(err);
+      .finally(() => {
+        this.setState({ loading: false });
       });
-    console.log("Continue Order");
   };
 
   showConfirmModal = () => {
@@ -116,18 +126,27 @@ class BurgerPage extends Component {
           closeConfirmModal={this.closeConfirmModal}
           show={this.state.confirmOrder}
         >
-          <OrderSummary
-            onCancel={this.closeConfirmModal}
-            onContinue={this.continueOrder}
-            price={this.state.totalPrice}
-            ingredientsNames={INGREDIENT_NAMES}
-            ingredients={this.state.ingredients}
-          />
+          {this.state.loading ? (
+            <Spinner />
+          ) : (
+            <OrderSummary
+              onCancel={this.closeConfirmModal}
+              onContinue={this.continueOrder}
+              price={this.state.totalPrice}
+              ingredientsNames={INGREDIENT_NAMES}
+              ingredients={this.state.ingredients}
+            />
+          )}
         </Modal>
+
+        {this.state.loading && <Spinner />}
+
         <p style={{ width: "100%", textAlign: "center", fontSize: "28px" }}>
           Сүүлчийн захиалагч : {this.state.lastCustomerName}
         </p>
+
         <Burger orts={this.state.ingredients} />
+
         <BuildControls
           showConfirmModal={this.showConfirmModal}
           ingredientsNames={INGREDIENT_NAMES}
