@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./style.module.css";
 import BurgerIngredient from "../BurgerIngredient";
 
+import { withRouter } from "react-router-dom";
+
 const Burger = (props) => {
   const items = Object.entries(props.orts);
 
@@ -13,7 +15,7 @@ const Burger = (props) => {
 
   if (content.length === 0)
     content = <p>Хачиртай талхныхаа орцыг сонгоно уу...</p>;
-
+  console.log(props);
   return (
     <div className={styles.Burger}>
       <BurgerIngredient type="bread-top" />
@@ -23,4 +25,4 @@ const Burger = (props) => {
   );
 };
 
-export default Burger;
+export default withRouter(Burger);

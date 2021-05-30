@@ -3,6 +3,7 @@ import SideBar from "../../components/SideBar";
 import Toolbar from "../../components/Toolbar";
 import OrderPage from "../OrderPage";
 import BurgerPage from "../BurgerPage";
+import { ShippingPage } from "../ShippingPage";
 import styles from "./style.module.css";
 import { Route, Switch } from "react-router-dom";
 
@@ -28,6 +29,7 @@ class App extends Component {
         <main className={styles.Content}>
           <Switch>
             <Route path="/orders" component={OrderPage} />
+            <Route path="/ship" component={ShippingPage} />
             <Route path="/" component={BurgerPage} />
           </Switch>
         </main>
