@@ -3,7 +3,6 @@ import Burger from "../../components/Burger";
 import BuildControls from "../../components/BuildControls";
 import Modal from "../../components/General/Modal";
 import OrderSummary from "../../components/OrderSummary";
-import axios from "../../axios-orders";
 import Spinner from "../../components/General/Spinner";
 
 const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
@@ -33,38 +32,17 @@ class BurgerPage extends Component {
   componentDidMount = () => {};
 
   continueOrder = () => {
-    // const order = {
-    //   orts: this.state.ingredients,
-    //   dun: this.state.totalPrice,
-    //   hayag: {
-    //     name: "Saraa",
-    //     city: "Ub",
-    //     street: "10r horoolol 23-12",
-    //   },
-    // };
-
-    // this.setState({ loading: true });
-
-    // axios
-    //   .post("/orders.json", order)
-    //   .then((response) => {
-    //     alert("Amjilttai hadgaladglaa");
-    //   })
-    //   .finally(() => {
-    //     this.setState({ loading: false });
-    //   });
-
     const params = [];
 
     for (let orts in this.state.ingredients) {
       params.push(orts + "=" + this.state.ingredients[orts]);
     }
 
-    const query = params.join("&");
+    params.push("dun=" + this.state.totalPrice);
 
     this.props.history.push({
       pathname: "/ship",
-      search: query,
+      search: params.join("&"),
     });
 
     this.closeConfirmModal();
@@ -107,7 +85,6 @@ class BurgerPage extends Component {
   };
 
   render() {
-    console.log(this.props);
     const disabledIngredients = { ...this.state.ingredients };
 
     for (let key in disabledIngredients) {
