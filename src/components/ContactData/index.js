@@ -28,7 +28,7 @@ class ContactData extends React.Component {
   saveOrder = () => {
     const order = {
       orts: this.props.ingredients,
-      dun: this.props.totalPrice,
+      dun: this.props.price,
       hayag: {
         name: this.state.name,
         city: this.state.city,

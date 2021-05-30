@@ -11,10 +11,30 @@ const BurgerIngredient = (props) => {
         <div className={`${styles.Seed} ${styles.Fourth}`}></div>
       </div>
     );
-  if (props.type === "salad") return <div className={styles.Salad}></div>;
-  if (props.type === "bacon") return <div className={styles.Bacon}></div>;
-  if (props.type === "meat") return <div className={styles.Meat}></div>;
-  if (props.type === "cheese") return <div className={styles.Cheese}></div>;
+  if (props.type === "salad")
+    return (
+      <div className={styles.Salad}>
+        <button onClick={() => props.choose("Салад")}>x</button>
+      </div>
+    );
+  if (props.type === "bacon")
+    return (
+      <div className={styles.Bacon}>
+        <button onClick={() => props.choose("Гахайн мах")}>x</button>
+      </div>
+    );
+  if (props.type === "meat")
+    return (
+      <div className={styles.Meat}>
+        <button onClick={() => props.choose("Үхрийн мах")}>x</button>
+      </div>
+    );
+  if (props.type === "cheese")
+    return (
+      <div className={styles.Cheese}>
+        <button onClick={() => props.choose("Бяслаг")}>x</button>
+      </div>
+    );
   if (props.type === "bread-bottom")
     return <div className={styles.BreadBottom}></div>;
   else return <div>...</div>;

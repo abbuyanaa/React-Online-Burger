@@ -109,7 +109,7 @@ class BurgerPage extends Component {
           )}
         </Modal>
 
-        <Burger orts={this.state.ingredients} />
+        <Burger choose={this.props.choose} orts={this.state.ingredients} />
 
         <BuildControls
           showConfirmModal={this.showConfirmModal}
