@@ -28,12 +28,12 @@ export class ShippingPage extends React.Component {
     this.setState({ ingredients });
   }
 
-  goBack = () => {
+  cancelOrder = () => {
     this.props.history.goBack();
   };
 
   showContactData = () => {
-    this.props.history.push("/ship/contact");
+    this.props.history.replace("/ship/contact");
   };
 
   render() {
@@ -44,7 +44,7 @@ export class ShippingPage extends React.Component {
         </p>
         <Burger orts={this.state.ingredients} />
         <Button
-          daragdsan={this.goBack}
+          daragdsan={this.cancelOrder}
           btnType="Danger"
           text="ЗАХИАЛГЫГ ЦУЦЛАХ"
         />
